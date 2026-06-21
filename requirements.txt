@@ -1,0 +1,20 @@
+# PyPDF2            # PDF text extraction
+# beautifulsoup4    # HTML → plain text for web scraping
+
+fastapi
+uvicorn
+python-dotenv     # Load API key from .env file
+pandas
+sqlalchemy
+psycopg2-binary
+pgvector
+openai
+scikit-learn
+rank-bm25
+sentence-transformers
+redis
+apscheduler
+sse-starlette
+tweepy
+requests          # HTTP calls to OpenAI API (no SDK — we learn the raw API)
+# tika-python

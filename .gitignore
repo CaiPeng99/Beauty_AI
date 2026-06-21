@@ -1,0 +1,19 @@
+# Environment
+.env
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# Vector store data
+*.index.json
+rag_index.json
+
+# Sample data (users provide their own documents)
+sample_data/
+
+# OS
+.DS_Store
+Thumbs.db

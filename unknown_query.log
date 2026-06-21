@@ -1,0 +1,14 @@
+2026-06-18 06:38:18,902 - WARNING - session:local_test_001 | query:I want to make a post about the most recommended fragrance | all results filtered out after apply_filters
+2026-06-18 17:17:39,192 - WARNING - session:local_test_001 | query:I want products for underwater photography | SQL pre-filter returned 0 products
+2026-06-18 17:24:46,943 - WARNING - session:local_test_001 | query:Recommend me something popular | top score 0.313 < threshold
+2026-06-18 21:50:06,833 - WARNING - session:local_test_001 | query:Recommend me something popular | top score 0.313 < threshold
+2026-06-18 21:51:06,422 - WARNING - session:local_test_001 | query:I want products for underwater photography | SQL pre-filter returned 0 products
+2026-06-19 20:22:58,914 - WARNING - session:eval_session | query:best rated | top score 0.317 < threshold
+2026-06-19 22:24:07,744 - WARNING - session:eval_session | query:combination | no recall results
+2026-06-19 22:25:51,832 - WARNING - session:eval_session | query:popular | top score 0.282 < threshold
+2026-06-19 22:25:59,273 - WARNING - session:eval_session | query:trending | top score 0.310 < threshold
+2026-06-19 23:10:49,981 - WARNING - session:eval_session | query:new arrivals | top score 0.220 < threshold
+2026-06-19 23:18:58,757 - WARNING - session:eval_session | query:new arrivals and best rated | top score 0.313 < threshold
+2026-06-20 10:19:12,654 - WARNING - session:local_test_001 | query:tell me most recommended fragrance | all results filtered out after review filter
+2026-06-20 10:23:51,799 - WARNING - session:local_test_001 | query:tell me most recommended fragrance | SQL pre-filter returned 0 products
+2026-06-20 12:35:49,470 - WARNING - session:local_test_001 | query:Recommend me something popular | top score 0.313 < threshold
