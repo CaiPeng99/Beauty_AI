@@ -12,7 +12,7 @@ __pycache__/
 rag_index.json
 
 # Sample data (users provide their own documents)
-sample_data/
+data/
 
 # OS
 .DS_Store
