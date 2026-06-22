@@ -154,17 +154,20 @@ def select_product(
         # 保险：如果 filters 为空，检查 query 是否包含已知 category
         if not intent_parsed.get("filters"):
             query_lower = user_query.lower()
+            primary_matched = False  # 🔥 加一个旗帜变量
+            
             for cat in retriever.known_categories:
-                # 用词边界匹配，避免 "Men" 匹配到 "fragrance"
                 if re.search(r'\b' + re.escape(cat.lower()) + r'\b', query_lower):
                     intent_parsed["filters"].append({
                         "field": "primary_category",
                         "op": "eq",
                         "value": cat
                     })
+                    primary_matched = True  # 🔥 标记已匹配
                     break
-            # secondary_category 单独判断，只在没匹配到 primary 时才加
-            if not any(f["field"] == "secondary_category" for f in intent_parsed["filters"]):
+
+            # 🔥 修改这里的条件：只有没匹配到 primary 时，才尝试 secondary
+            if not primary_matched:  # 这才是你注释里写的“只在没匹配到 primary 时才加”
                 for sec_cat in retriever.known_secondary_categories:
                     if re.search(r'\b' + re.escape(sec_cat.lower()) + r'\b', query_lower):
                         intent_parsed["filters"].append({
@@ -173,6 +176,7 @@ def select_product(
                             "value": sec_cat
                         })
                         break
+            
         print(f"DEBUG parsed_intent after fix: {intent_parsed}")
 
         # ── 4. smart_search：SQL预过滤 + 向量召回 + review过滤 + rerank + 聚合
