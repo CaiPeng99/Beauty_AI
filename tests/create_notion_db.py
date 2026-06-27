@@ -4,7 +4,7 @@ import os
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
 NOTION_PARENT_PAGE_ID = os.environ.get("NOTION_PARENT_PAGE_ID")
 
-url = "https://api.notion.com/v1/databases"
+url = os.environ.get("NOTION_URL")
 
 headers = {
     "Authorization": f"Bearer {NOTION_TOKEN}",
