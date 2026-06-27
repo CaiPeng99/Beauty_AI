@@ -44,7 +44,7 @@ SELECT_PRODUCT_INTENTS = {"select_hot", "select_new", "select_exclusive", "selec
 # 4. General product search by skin type/effect/price/brand → intent:select_product
 # 5. Generate social media copy only → intent:generate_content
 # 6. Publish finished copy to X(Twitter) → intent:publish_twitter
-# 7. Publish finished copy to Instagram → intent:publish_ins
+# 7. Save copy to Notion / post to Notion → intent:publish_notion
 # 8. Save copy to local markdown file → intent:save_local
 # 9. Q&A / product ingredient / usage inquiry → intent:qa
 # 10. Unrecognized irrelevant request → intent:unknown
@@ -67,7 +67,7 @@ Identify the user's intent and return only the keyword:
 
 3. Generate social media copy → intent:generate_content
 4. Publish to X(Twitter) → intent:publish_twitter
-5. Publish to Instagram → intent:publish_ins
+5. Save copy to Notion / post to Notion → intent:publish_notion
 6. Save copy locally → intent:save_local
 7. Q&A / ingredient / usage inquiry → intent:qa
 8. Unrecognized → intent:unknown
@@ -114,11 +114,12 @@ class BeautyAgent:
         query: str,
         platform: str,
         stream_cb: Optional[Callable[[str], None]],
+        long_mem: str = "",   # ← 加这个
     ) -> Dict[str, Any]:
         """
-        publish_twitter / publish_ins / save_local 的公共逻辑：
+        publish_Notion / save_local 的公共逻辑：
           选品 → 生成文案 → 发布或存档
-        platform: "twitter" | "instagram" | "local"
+        platform: "twitter" | "Notion" | "local"
         """
         if stream_cb:
             stream_cb("【Step 2】Use RAG to find suitable products...")
@@ -323,9 +324,9 @@ class BeautyAgent:
             self._save_memory(query, result)
             return result
 
-        # ── 发布到 Instagram ─────────────────────────────────────────────
-        elif intent == "publish_ins":
-            result = self._run_publish_flow(query, "instagram", stream_cb, long_mem)
+        # ── 发布到 Notion ─────────────────────────────────────────────
+        elif intent == "publish_notion":
+            result = self._run_publish_flow(query, "notion", stream_cb)
             result["intent"] = intent
             self._save_memory(query, result)
             return result

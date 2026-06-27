@@ -158,6 +158,8 @@ class BeautyVectorStore(Base):
     skin_type      = Column(String(50), default="")
     skin_tone      = Column(String(50), default="")
 
+    search_tsv = Column(TSVECTOR)  # ← 加这行
+
     # 全量元数据（所有原始字段 JSON 序列化，供 apply_filters 动态过滤）
     meta_info  = Column(Text, default="{}")
 

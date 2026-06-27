@@ -520,3 +520,322 @@ NameError: name 'parse_intent' is not defined. Did you mean: 'parsed_intent'?
 2026-06-20 12:37:15,866 - INFO - [local_test_001] 意图识别: generate_content | query: I want a post about the most recommended moisturizer
 2026-06-20 12:37:46,083 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products for underwater photography
 2026-06-20 12:43:29,327 - INFO - [local_test_001] 意图识别: select_by_attribute | query: Show me highly rated cleansers under $30
+2026-06-22 08:15:33,197 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 08:20:08,823 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 08:27:06,893 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 08:29:16,752 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 08:37:47,139 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 08:40:10,618 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 08:49:36,359 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 08:51:14,081 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:12:59,666 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 09:16:07,559 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:25:14,903 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 09:27:42,208 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:33:24,588 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 09:35:00,579 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:38:16,231 - INFO - [local_test_001] 意图识别: generate_content | query: I want a post about the most recommended moisturizer
+2026-06-22 09:38:18,083 - INFO - [local_test_001] 执行产品检索，query: I want a post about the most recommended moisturizer
+2026-06-22 09:38:55,954 - ERROR - select_product 异常: type object 'BeautyVectorStore' has no attribute 'search_tsv'
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/tools.py", line 183, in select_product
+    has_data, ranked_products, tip = retriever.smart_search(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 1044, in smart_search
+    has_data, results, tip = self.search_with_judge(
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 599, in search_with_judge
+    results = self.retrieve(query, query_embedding, candidate_ids=candidate_ids, top_k=top_k)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 472, in retrieve
+    .filter(BeautyVectorStore.search_tsv.op("@@")(func.websearch_to_tsquery('english', query)))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'BeautyVectorStore' has no attribute 'search_tsv'
+2026-06-22 09:38:56,810 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:50:52,990 - INFO - [local_test_001] 意图识别: generate_content | query: I want a post about the most recommended moisturizer
+2026-06-22 09:50:55,973 - INFO - [local_test_001] 执行产品检索，query: I want a post about the most recommended moisturizer
+2026-06-22 09:52:10,964 - ERROR - select_product 异常: (sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter 'q'
+[SQL: SELECT beauty_vector_store.id AS beauty_vector_store_id, beauty_vector_store.content AS beauty_vector_store_content, beauty_vector_store.embedding AS beauty_vector_store_embedding, beauty_vector_store.product_id AS beauty_vector_store_product_id, beauty_vector_store.chunk_type AS beauty_vector_store_chunk_type, beauty_vector_store.rating AS beauty_vector_store_rating, beauty_vector_store.is_recommended AS beauty_vector_store_is_recommended, beauty_vector_store.skin_type AS beauty_vector_store_skin_type, beauty_vector_store.skin_tone AS beauty_vector_store_skin_tone, beauty_vector_store.search_tsv AS beauty_vector_store_search_tsv, beauty_vector_store.meta_info AS beauty_vector_store_meta_info, beauty_vector_store.created_at AS beauty_vector_store_created_at 
+FROM beauty_vector_store 
+WHERE beauty_vector_store.search_tsv @@ websearch_to_tsquery(%(websearch_to_tsquery_1)s, %(websearch_to_tsquery_2)s) ORDER BY ts_rank(search_tsv, websearch_to_tsquery('english', %(q)s)) DESC 
+ LIMIT %(param_1)s]
+[parameters: [{}]]
+(Background on this error at: https://sqlalche.me/e/20/cd3x)
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    context = constructor(
+              ^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1417, in _init_compiled
+    compiled.construct_params(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 1963, in construct_params
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: A value is required for bind parameter 'q' (Background on this error at: https://sqlalche.me/e/20/cd3x)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/tools.py", line 183, in select_product
+    has_data, ranked_products, tip = retriever.smart_search(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 1045, in smart_search
+    has_data, results, tip = self.search_with_judge(
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 600, in search_with_judge
+    results = self.retrieve(query, query_embedding, candidate_ids=candidate_ids, top_k=top_k)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 477, in retrieve
+    bm25_results = bm25_query.all()
+                   ^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2711, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2373, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1823, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    context = constructor(
+              ^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1417, in _init_compiled
+    compiled.construct_params(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 1963, in construct_params
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter 'q'
+[SQL: SELECT beauty_vector_store.id AS beauty_vector_store_id, beauty_vector_store.content AS beauty_vector_store_content, beauty_vector_store.embedding AS beauty_vector_store_embedding, beauty_vector_store.product_id AS beauty_vector_store_product_id, beauty_vector_store.chunk_type AS beauty_vector_store_chunk_type, beauty_vector_store.rating AS beauty_vector_store_rating, beauty_vector_store.is_recommended AS beauty_vector_store_is_recommended, beauty_vector_store.skin_type AS beauty_vector_store_skin_type, beauty_vector_store.skin_tone AS beauty_vector_store_skin_tone, beauty_vector_store.search_tsv AS beauty_vector_store_search_tsv, beauty_vector_store.meta_info AS beauty_vector_store_meta_info, beauty_vector_store.created_at AS beauty_vector_store_created_at 
+FROM beauty_vector_store 
+WHERE beauty_vector_store.search_tsv @@ websearch_to_tsquery(%(websearch_to_tsquery_1)s, %(websearch_to_tsquery_2)s) ORDER BY ts_rank(search_tsv, websearch_to_tsquery('english', %(q)s)) DESC 
+ LIMIT %(param_1)s]
+[parameters: [{}]]
+(Background on this error at: https://sqlalche.me/e/20/cd3x)
+2026-06-22 09:52:11,048 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:53:52,555 - INFO - [local_test_001] 意图识别: select_product | query: I want products that are for the most recommended moisturizer
+2026-06-22 09:53:55,705 - INFO - [local_test_001] 执行产品检索，query: I want products that are for the most recommended moisturizer
+2026-06-22 09:55:53,752 - ERROR - select_product 异常: (sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter 'q'
+[SQL: SELECT beauty_vector_store.id AS beauty_vector_store_id, beauty_vector_store.content AS beauty_vector_store_content, beauty_vector_store.embedding AS beauty_vector_store_embedding, beauty_vector_store.product_id AS beauty_vector_store_product_id, beauty_vector_store.chunk_type AS beauty_vector_store_chunk_type, beauty_vector_store.rating AS beauty_vector_store_rating, beauty_vector_store.is_recommended AS beauty_vector_store_is_recommended, beauty_vector_store.skin_type AS beauty_vector_store_skin_type, beauty_vector_store.skin_tone AS beauty_vector_store_skin_tone, beauty_vector_store.search_tsv AS beauty_vector_store_search_tsv, beauty_vector_store.meta_info AS beauty_vector_store_meta_info, beauty_vector_store.created_at AS beauty_vector_store_created_at 
+FROM beauty_vector_store 
+WHERE beauty_vector_store.search_tsv @@ websearch_to_tsquery(%(websearch_to_tsquery_1)s, %(websearch_to_tsquery_2)s) ORDER BY ts_rank(search_tsv, websearch_to_tsquery('english', %(q)s)) DESC 
+ LIMIT %(param_1)s]
+[parameters: [{}]]
+(Background on this error at: https://sqlalche.me/e/20/cd3x)
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    context = constructor(
+              ^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1417, in _init_compiled
+    compiled.construct_params(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 1963, in construct_params
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: A value is required for bind parameter 'q' (Background on this error at: https://sqlalche.me/e/20/cd3x)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/tools.py", line 183, in select_product
+    has_data, ranked_products, tip = retriever.smart_search(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 1045, in smart_search
+    has_data, results, tip = self.search_with_judge(
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 600, in search_with_judge
+    results = self.retrieve(query, query_embedding, candidate_ids=candidate_ids, top_k=top_k)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/rag/retriever.py", line 477, in retrieve
+    bm25_results = bm25_query.all()
+                   ^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2711, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2373, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2271, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1823, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1817, in _execute_context
+    context = constructor(
+              ^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 1417, in _init_compiled
+    compiled.construct_params(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 1963, in construct_params
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter 'q'
+[SQL: SELECT beauty_vector_store.id AS beauty_vector_store_id, beauty_vector_store.content AS beauty_vector_store_content, beauty_vector_store.embedding AS beauty_vector_store_embedding, beauty_vector_store.product_id AS beauty_vector_store_product_id, beauty_vector_store.chunk_type AS beauty_vector_store_chunk_type, beauty_vector_store.rating AS beauty_vector_store_rating, beauty_vector_store.is_recommended AS beauty_vector_store_is_recommended, beauty_vector_store.skin_type AS beauty_vector_store_skin_type, beauty_vector_store.skin_tone AS beauty_vector_store_skin_tone, beauty_vector_store.search_tsv AS beauty_vector_store_search_tsv, beauty_vector_store.meta_info AS beauty_vector_store_meta_info, beauty_vector_store.created_at AS beauty_vector_store_created_at 
+FROM beauty_vector_store 
+WHERE beauty_vector_store.search_tsv @@ websearch_to_tsquery(%(websearch_to_tsquery_1)s, %(websearch_to_tsquery_2)s) ORDER BY ts_rank(search_tsv, websearch_to_tsquery('english', %(q)s)) DESC 
+ LIMIT %(param_1)s]
+[parameters: [{}]]
+(Background on this error at: https://sqlalche.me/e/20/cd3x)
+2026-06-22 09:55:53,783 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 09:57:04,750 - INFO - [local_test_001] 意图识别: select_by_attribute | query: I want products that are for Moisturizer
+2026-06-22 10:03:12,150 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:07:34,928 - INFO - [local_test_001] 意图识别: generate_content | query: I want a post about the most recommended moisturizer
+2026-06-22 10:07:37,912 - INFO - [local_test_001] 执行产品检索，query: I want a post about the most recommended moisturizer
+2026-06-22 10:09:23,094 - ERROR - generate_content 异常: Error 61 connecting to localhost:6379. Connection refused.
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1033, in connect_check_health
+    sock = self._connect()
+           ^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1581, in _connect
+    raise err
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1565, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/tools.py", line 336, in generate_content
+    chat_history = get_short_memory(session_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 58, in get_short_memory
+    val = redis_client.get(key)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/commands/core.py", line 3194, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/client.py", line 787, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/client.py", line 793, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/utils.py", line 258, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 3139, in get_connection
+    connection.connect()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1006, in connect
+    self.retry.call_with_retry(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/retry.py", line 132, in call_with_retry
+    raise error
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/retry.py", line 120, in call_with_retry
+    return do()
+           ^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1007, in <lambda>
+    lambda: self.connect_check_health(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1055, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:09:23,134 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:09:43,531 - INFO - [local_test_001] 意图识别: select_product | query: I want products that are for the most recommended moisturizer
+2026-06-22 10:09:44,113 - INFO - [local_test_001] 执行产品检索，query: I want products that are for the most recommended moisturizer
+2026-06-22 10:10:59,673 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:18:06,503 - INFO - [local_test_001] 意图识别: select_product | query: I want products that are for the most recommended moisturizer
+2026-06-22 10:18:08,719 - INFO - [local_test_001] 执行产品检索，query: I want products that are for the most recommended moisturizer
+2026-06-22 10:19:55,977 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:21:16,855 - INFO - [local_test_001] 意图识别: qa | query: -q
+2026-06-22 10:21:18,980 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:24:53,773 - INFO - [local_test_001] 意图识别: select_product | query: I want products that are for the most recommended moisturizer
+2026-06-22 10:24:56,498 - INFO - [local_test_001] 执行产品检索，query: I want products that are for the most recommended moisturizer
+2026-06-22 10:26:26,665 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:31:36,018 - INFO - [local_test_001] 意图识别: select_product | query: I want products that are for the most recommended moisturizer
+2026-06-22 10:31:38,793 - INFO - [local_test_001] 执行产品检索，query: I want products that are for the most recommended moisturizer
+2026-06-22 10:33:03,425 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:34:07,438 - INFO - [local_test_001] 意图识别: select_product | query: Best hair shampoo
+2026-06-22 10:34:08,732 - INFO - [local_test_001] 执行产品检索，query: Best hair shampoo
+2026-06-22 10:35:55,048 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:36:11,670 - INFO - [local_test_001] 意图识别: select_by_attribute | query: want products for underwater photography
+2026-06-22 10:39:50,097 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:40:19,175 - INFO - [local_test_001] 意图识别: select_product | query: Recommend me something popular
+2026-06-22 10:40:24,129 - INFO - [local_test_001] 执行产品检索，query: Recommend me something popular
+2026-06-22 10:43:33,899 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-22 10:44:43,664 - INFO - [local_test_001] 意图识别: select_by_attribute | query: Show me highly rated cleansers under $30
+2026-06-22 10:48:10,620 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-23 07:50:31,353 - INFO - [local_test_001] 意图识别: select_by_attribute | query: "Help me find a foundation and save it to Notion"
+2026-06-23 07:58:01,936 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-23 08:03:04,616 - INFO - [local_test_001] 意图识别: publish_notion | query: Find me a good foundation and save it to Notion
+2026-06-23 08:03:07,507 - INFO - [local_test_001] 执行产品检索，query: Find me a good foundation and save it to Notion
+2026-06-23 08:04:19,110 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-23 08:06:36,894 - INFO - [local_test_001] 意图识别: publish_notion | query: Find me a good fragrance and save it to Notion
+2026-06-23 08:06:38,584 - INFO - [local_test_001] 执行产品检索，query: Find me a good fragrance and save it to Notion
+2026-06-23 08:08:00,614 - ERROR - generate_content 异常: Error 61 connecting to localhost:6379. Connection refused.
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1033, in connect_check_health
+    sock = self._connect()
+           ^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1581, in _connect
+    raise err
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1565, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/tools.py", line 360, in generate_content
+    chat_history = get_short_memory(session_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 58, in get_short_memory
+    val = redis_client.get(key)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/commands/core.py", line 3194, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/client.py", line 787, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/client.py", line 793, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/utils.py", line 258, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 3139, in get_connection
+    connection.connect()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1006, in connect
+    self.retry.call_with_retry(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/retry.py", line 132, in call_with_retry
+    raise error
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/retry.py", line 120, in call_with_retry
+    return do()
+           ^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1007, in <lambda>
+    lambda: self.connect_check_health(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/redis/connection.py", line 1055, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-23 08:08:00,653 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
+2026-06-23 08:12:57,427 - INFO - [local_test_001] 意图识别: publish_notion | query: Find me a good fragrance and save it to Notion
+2026-06-23 08:13:00,602 - INFO - [local_test_001] 执行产品检索，query: Find me a good fragrance and save it to Notion

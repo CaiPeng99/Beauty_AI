@@ -26,6 +26,8 @@ from app.config import (
     MAX_RETRY, OUTPUT_DIR
 )
 
+from app.social_publish.notion_publisher import notion_publisher
+
 from app.agent.llm_client import llm_adapter
 import re
 
@@ -273,23 +275,45 @@ def select_product(
         products_db.sort(key=lambda p: pid_order.get(p.product_id, 999))
  
         # ── 7. LLM 动态识别返回字段 ──────────────────────────────────────
+#         field_prompt = """
+# You are a beauty product information parser.
+# Based on the user's question, tell me which product fields to return.
+# Choose ONLY from:
+#   product_id, product_name, brand_name, loves_count, rating,
+#   price_usd, sale_price_usd, ingredients, size, highlights,
+#   limited_edition, new, sephora_exclusive, online_only,
+#   out_of_stock, primary_category, secondary_category
+ 
+# User question: {query}
+# Output field names separated by commas. No extra text.
+#         """.strip()
         field_prompt = """
 You are a beauty product information parser.
 Based on the user's question, tell me which product fields to return.
-Choose ONLY from:
-  product_id, product_name, brand_name, loves_count, rating,
-  price_usd, sale_price_usd, ingredients, size, highlights,
+
+ALWAYS include these base fields: product_id, product_name, brand_name, rating, price_usd, primary_category, secondary_category
+
+Then add extra fields from this list if relevant to the question:
+  loves_count, sale_price_usd,, size, highlights,
   limited_edition, new, sephora_exclusive, online_only,
-  out_of_stock, primary_category, secondary_category
- 
+  out_of_stock
+
 User question: {query}
 Output field names separated by commas. No extra text.
-        """.strip()
+""".strip()
  
         raw_fields    = llm_adapter.complete(field_prompt.format(query=user_query))
+        # print(f"DEBUG LLM returned fields: {raw_fields}")  # ← 加这行
+
         needed_fields = [f.strip() for f in raw_fields.split(",") if f.strip()]
         if not needed_fields:
             needed_fields = DEFAULT_FIELDS
+        
+        # 强制基本字段始终存在
+        must_have = ["product_id", "product_name", "brand_name", "rating", "price_usd", "primary_category", "secondary_category"]
+        for f in must_have:
+            if f not in needed_fields:
+                needed_fields.insert(0, f)
  
         # ── 8. 构建返回列表 ───────────────────────────────────────────────
         ranked_map   = {p["product_id"]: p for p in ranked_products}
@@ -438,8 +462,8 @@ Output tags only.
         # 平台发布
         if platform == "twitter":
             publish_res = twitter_publisher.publish(content, tags)
-        elif platform == "instagram":
-            publish_res = ig_publisher.publish_post(content, tags)
+        elif platform == "notion":
+            publish_res = notion_publisher.publish_post(content, tags, product_id=product.get("product_id",""))
         else:
             return {"status": "fail", "data": {}, "message": f"不支持的发布平台: {platform}"}
 
@@ -568,13 +592,16 @@ def read_local_file_mcp(filename: str) -> dict:
 
 @ToolRegistry.register("select_by_attribute")
 def select_by_attribute(db: Session, session_id: str, parsed_intent: dict) -> dict:
-
-    # print(f"DEBUG parsed_intent: {parsed_intent}")  # ← 加这行
-
     # 复用已有的 parse_intent，动态解析过滤条件
     retriever = HybridRetriever(db)   # 不需要传 llm_client
+    print(f"DEBUG select_by_attribute parsed_intent: {parsed_intent}")  # ← add
+
     candidate_ids = retriever._prefilter_by_sql(parsed_intent.get("filters", []))
     
+    print(f"DEBUG candidate_ids: {candidate_ids}")  # ← 加这行
+    print(f"DEBUG candidate_ids count: {len(candidate_ids) if candidate_ids is not None else 'None (no filter)'}")  # ← add
+    
+
     if candidate_ids is not None and len(candidate_ids) == 0:
         return {"status": "clarify", "data": {}, "message": "未找到符合条件的产品"}
     
@@ -603,3 +630,48 @@ def select_by_attribute(db: Session, session_id: str, parsed_intent: dict) -> di
         "data": {"products": product_list},
         "message": f"找到 {len(product_list)} 款产品",
     }
+
+# @ToolRegistry.register("select_by_attribute")
+# def select_by_attribute(db: Session, session_id: str, parsed_intent: dict) -> dict:
+#     # ========== 🔥 新增：类别折叠修复（与 smart_search 保持一致） ==========
+#     filters = parsed_intent.get("filters", [])
+    
+#     # 规则：如果 filters 里同时存在 primary_category 和 secondary_category，
+#     # 直接丢弃 primary_category，只保留 secondary_category（子类更具体）
+#     has_secondary = any(f["field"] == "secondary_category" for f in filters)
+#     if has_secondary:
+#         filters = [f for f in filters if f["field"] != "primary_category"]
+#         parsed_intent["filters"] = filters
+#         print(f"🔥 Category collapsed in select_by_attribute: removed primary_category, keeping secondary only.")
+#     # =============================================================
+
+#     # 复用已有的 parse_intent，动态解析过滤条件
+#     retriever = HybridRetriever(db)   # 不需要传 llm_client
+#     candidate_ids = retriever._prefilter_by_sql(parsed_intent.get("filters", []))
+    
+#     if candidate_ids is not None and len(candidate_ids) == 0:
+#         return {"status": "clarify", "data": {}, "message": "未找到符合条件的产品"}
+    
+#     # 根据 sort_by 决定排序
+#     sort_field = parsed_intent.get("sort_by") or "loves_count"
+#     sort_col = getattr(Product, sort_field, Product.loves_count)
+    
+#     q = db.query(Product).filter(Product.out_of_stock != 1)
+#     if candidate_ids is not None:
+#         q = q.filter(Product.product_id.in_(candidate_ids))
+    
+#     products = q.order_by(sort_col.desc()).limit(10).all()
+    
+#     if not products:
+#         # fallback：放宽条件，去掉 out_of_stock 限制（但 candidate_ids 依然生效）
+#         products = q.order_by(sort_col.desc()).limit(10).all()
+    
+#     product_list = [
+#         {f: getattr(p, f) for f in DEFAULT_FIELDS if hasattr(p, f)}
+#         for p in products
+#     ]
+#     return {
+#         "status": "success",
+#         "data": {"products": product_list},
+#         "message": f"找到 {len(product_list)} 款产品",
+#     }

@@ -18,3 +18,4 @@ sse-starlette
 tweepy
 requests          # HTTP calls to OpenAI API (no SDK — we learn the raw API)
 # tika-python
+mcp
