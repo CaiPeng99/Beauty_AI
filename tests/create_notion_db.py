@@ -3,8 +3,6 @@ import os
 
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
 NOTION_PARENT_PAGE_ID = os.environ.get("NOTION_PARENT_PAGE_ID")
-# NOTION_TOKEN = "REMOVED"
-# NOTION_PARENT_PAGE_ID = "38864260-2f27-8048-9dba-cafffd81fc85"
 
 url = "https://api.notion.com/v1/databases"
 
