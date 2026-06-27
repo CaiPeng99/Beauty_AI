@@ -51,9 +51,9 @@ Intent Recognition  (LLM-based, 7 intent classes)
      │    unknown                   └─► Return ranked products
      │
      └─── publish_notion  ───────► RAG Pipeline
-          publish_twitter            └─► Generate content  (see Module 3)
-          save_local                       └─► MCP Tool call (see Module 3)
-          generate_content
+          save_local                └─► Generate content  (see Module 3)
+          generate_content                 └─► MCP Tool call (see Module 3)
+          
 ```
 
 Two paths exist because they serve different query types.
