@@ -839,3 +839,340 @@ redis.exceptions.ConnectionError: Error 61 connecting to localhost:6379. Connect
 2026-06-23 08:08:00,653 - WARNING - [local_test_001] 记忆保存失败（不中断流程）: Error 61 connecting to localhost:6379. Connection refused.
 2026-06-23 08:12:57,427 - INFO - [local_test_001] 意图识别: publish_notion | query: Find me a good fragrance and save it to Notion
 2026-06-23 08:13:00,602 - INFO - [local_test_001] 执行产品检索，query: Find me a good fragrance and save it to Notion
+2026-06-27 14:58:04,673 - INFO - [local_test_001] 意图识别: save_local | query: find me a good hair product and save it locally
+2026-06-27 14:58:08,318 - INFO - [local_test_001] 执行产品检索，query: find me a good hair product and save it locally
+2026-06-27 15:01:12,279 - INFO - [local_test_001] 意图识别: save_local | query: Find me 5 good cleansers and save it locally
+2026-06-27 15:01:13,827 - INFO - [local_test_001] 执行产品检索，query: Find me 5 good cleansers and save it locally
+2026-06-27 15:16:11,395 - INFO - [local_test_001] 意图识别: save_local | query: Find me 5 good cleansers and save it locally
+2026-06-27 15:16:13,682 - INFO - [local_test_001] 执行产品检索，query: Find me 5 good cleansers and save it locally
+2026-06-27 15:28:19,436 - INFO - [local_test_001] 意图识别: save_local | query: Find me 3 good cleansers and save it locally
+2026-06-27 15:28:22,728 - INFO - [local_test_001] 执行产品检索，query: Find me 3 good cleansers and save it locally
+2026-06-27 15:33:12,710 - INFO - [local_test_001] 意图识别: save_local | query: Find me 3 good cleansers and save it locally
+2026-06-27 15:33:15,365 - INFO - [local_test_001] 执行产品检索，query: Find me 3 good cleansers and save it locally
+2026-06-27 15:41:37,931 - INFO - [local_test_001] 意图识别: save_local | query: Find me 3 good cleansers and save it locally
+2026-06-27 15:41:40,765 - INFO - [local_test_001] 执行产品检索，query: Find me 3 good cleansers and save it locally
+2026-06-27 15:46:56,304 - INFO - [local_test_001] 意图识别: publish_notion | query: Find me 5 hair products and save to Notion
+2026-06-27 15:47:00,499 - INFO - [local_test_001] 执行产品检索，query: Find me 5 hair products and save to Notion
+2026-06-27 15:51:23,160 - INFO - [local_test_001] 意图识别: save_local | query: Find me 3 good cleansers and save it locally
+2026-06-27 15:51:26,818 - INFO - [local_test_001] 执行产品检索，query: Find me 3 good cleansers and save it locally
+2026-06-27 16:02:01,205 - INFO - [local_test_001] 意图识别: save_local | query: Find me 3 good cleansers and save it locally
+2026-06-27 16:02:04,229 - INFO - [local_test_001] 执行产品检索，query: Find me 3 good cleansers and save it locally
+2026-06-29 15:58:23,090 - WARNING - [memory extraction] LLM call failed, skipping this turn: API timeout
+2026-06-29 16:10:16,787 - WARNING - [memory extraction] LLM call failed, skipping this turn: API timeout
+2026-06-29 16:10:16,802 - ERROR - [user_test_abc123|sess_monday_001] Failed to save long-term memory: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 175, in maybe_save_memory
+    emb = _get_encoder().encode(memory_text).tolist()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'tolist'
+2026-06-29 16:10:16,818 - ERROR - [user_test_abc123|sess_monday_001] Failed to save long-term memory: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 175, in maybe_save_memory
+    emb = _get_encoder().encode(memory_text).tolist()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'tolist'
+2026-06-29 16:10:16,820 - WARNING - get_long_memory query failed (user=user_test_abc123): 'list' object has no attribute 'tolist'
+2026-06-29 16:10:16,827 - ERROR - [user_aaa|sess_monday_001] Failed to save long-term memory: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 175, in maybe_save_memory
+    emb = _get_encoder().encode(memory_text).tolist()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'tolist'
+2026-06-29 16:10:16,832 - WARNING - get_long_memory query failed (user=brand_new_user): 'list' object has no attribute 'tolist'
+2026-06-29 16:10:16,913 - ERROR - [user_test_abc123|sess_monday_001] Failed to save long-term memory: 'list' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 175, in maybe_save_memory
+    emb = _get_encoder().encode(memory_text).tolist()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'tolist'
+2026-06-29 16:18:06,045 - WARNING - [memory extraction] LLM call failed, skipping this turn: API timeout
+2026-06-29 16:18:06,062 - ERROR - [user_test_abc123|sess_monday_001] Failed to save long-term memory: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_test_abc123', 'sess_monday_001', 'I have dry skin and a budget of $50', 'Got it, here are my recommendations...', 'Dry skin, budget under $50', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.062495')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.ProgrammingError: Error binding parameter 6: type 'list' is not supported
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 185, in maybe_save_memory
+    db.commit()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_test_abc123', 'sess_monday_001', 'I have dry skin and a budget of $50', 'Got it, here are my recommendations...', 'Dry skin, budget under $50', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.062495')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-29 16:18:06,084 - ERROR - [user_test_abc123|sess_monday_001] Failed to save long-term memory: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_test_abc123', 'sess_monday_001', 'I have dry skin and a budget of $50', 'Understood', 'Dry skin, budget under $50', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.084040')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.ProgrammingError: Error binding parameter 6: type 'list' is not supported
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 185, in maybe_save_memory
+    db.commit()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_test_abc123', 'sess_monday_001', 'I have dry skin and a budget of $50', 'Understood', 'Dry skin, budget under $50', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.084040')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-29 16:18:06,087 - WARNING - get_long_memory query failed (user=user_test_abc123): 'NoneType' object has no attribute 'created_at'
+2026-06-29 16:18:06,094 - ERROR - [user_aaa|sess_monday_001] Failed to save long-term memory: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_aaa', 'sess_monday_001', 'dry skin', 'ok', 'User A has dry skin', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.094812')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.ProgrammingError: Error binding parameter 6: type 'list' is not supported
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 185, in maybe_save_memory
+    db.commit()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_aaa', 'sess_monday_001', 'dry skin', 'ok', 'User A has dry skin', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.094812')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-29 16:18:06,194 - ERROR - [user_test_abc123|sess_monday_001] Failed to save long-term memory: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_test_abc123', 'sess_monday_001', 'I have dry skin, budget under $50, no alcohol-based products please', 'Based on your dry skin and $50 budget, I recommend the Estee Lauder Double Wear', 'Dry skin, budget under $50, avoids alcohol-based products', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.194506')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.ProgrammingError: Error binding parameter 6: type 'list' is not supported
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caipeng/Desktop/rag_beauty/app/agent/memory.py", line 185, in maybe_save_memory
+    db.commit()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           ^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/caipeng/Desktop/rag_beauty/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (sqlite3.ProgrammingError) Error binding parameter 6: type 'list' is not supported
+[SQL: INSERT INTO chat_memory (user_id, session_id, user_query, ai_response, summary, embedding, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('user_test_abc123', 'sess_monday_001', 'I have dry skin, budget under $50, no alcohol-based products please', 'Based on your dry skin and $50 budget, I recommend the Estee Lauder Double Wear', 'Dry skin, budget under $50, avoids alcohol-based products', [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, ... (1620 characters truncated) ...  0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1], '2026-06-29 20:18:06.194506')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-06-29 16:21:19,839 - WARNING - [memory extraction] LLM call failed, skipping this turn: API timeout
+2026-06-29 16:21:19,857 - INFO - [user_test_abc123|sess_monday_001] Long-term memory saved: Dry skin, budget under $50
+2026-06-29 16:21:19,868 - INFO - [user_test_abc123|sess_monday_001] Long-term memory saved: Dry skin, budget under $50
+2026-06-29 16:21:19,875 - INFO - [user_aaa|sess_monday_001] Long-term memory saved: User A has dry skin
+2026-06-29 16:21:19,950 - INFO - [user_test_abc123|sess_monday_001] Long-term memory saved: Dry skin, budget under $50, avoids alcohol-based products

@@ -134,6 +134,7 @@ class Review(Base):
 
     def __repr__(self):
         return (
+            
             f"<Review(review_id={self.review_id}, "
             f"product_id={self.product_id}, rating={self.rating})>"
         )

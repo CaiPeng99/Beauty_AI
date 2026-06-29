@@ -105,7 +105,7 @@ Extract structured filter conditions from the user's query.
 Available product fields (from product_info):
   rating, price_usd, sale_price_usd, value_price_usd, loves_count, reviews,
   new, limited_edition, sephora_exclusive, online_only, out_of_stock,
-  child_count, child_max_price, child_min_price,
+  child_max_price, child_min_price,
   brand_name, primary_category, secondary_category, tertiary_category,
   highlights, size
  
@@ -142,6 +142,10 @@ Rules:
 - Do not invent fields that are not listed above.
 - IMPORTANT: "review_filters" must ONLY contain review fields (is_recommended, helpfulness, skin_type, etc). NEVER put primary_category, secondary_category, brand_name, or any product field into "review_filters".
 - Do NOT add "is_recommended" to review_filters. Recommendation filtering is handled automatically in aggregation.
+- IMPORTANT: Numbers in the query that indicate HOW MANY products the user wants 
+  (e.g. "find me 5", "top 3", "give me 10") are NOT filter conditions. 
+  Do NOT map them to any field like child_count, reviews, or any numeric field.
+  Quantity words should be completely ignored in filter extraction.
 
 User query: {query}"""
  

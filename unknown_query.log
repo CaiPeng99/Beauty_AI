@@ -13,3 +13,4 @@
 2026-06-20 10:23:51,799 - WARNING - session:local_test_001 | query:tell me most recommended fragrance | SQL pre-filter returned 0 products
 2026-06-20 12:35:49,470 - WARNING - session:local_test_001 | query:Recommend me something popular | top score 0.313 < threshold
 2026-06-23 08:04:17,864 - WARNING - session:local_test_001 | query:Find me a good foundation and save it to Notion | SQL pre-filter returned 0 products
+2026-06-27 15:47:59,842 - WARNING - session:local_test_001 | query:Find me 5 hair products and save to Notion | only 1 chunks recalled, too few for aggregation

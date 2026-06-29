@@ -411,6 +411,14 @@ Writing Rules:
 4. Quote real user review data to increase credibility.
 5. Natural种草 (soft selling), avoid exaggerated or medical/promotional claims.
 6. Use language that fits the overseas beauty community, ensure readability.
+7. Output language: English only. Do NOT use Chinese or any other language.
+8. Do NOT include placeholder text like "[link]", "[platform]", "Find it now", or numbered prefixes like "1/3".
+9. Every product must follow this exact structure:
+   [emoji] [product intro sentence]
+   [key highlights sentence]
+   [user data sentence]
+   #tag1 #tag2 #tag3 #tag4
+
 Output only the final copy, no extra explanation.
 """.strip()
 
@@ -498,20 +506,29 @@ Output tags only.
 def write_local_file(
     product_name: str,
     platform: str,
-    content: str
+    content: str,
+    file_path: str = "",   # ← 传入已有文件路径则追加，不传则新建
 ) -> dict:
     try:
-        safe_name = product_name.replace(" ", "_").replace("/", "_")
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename  = f"{platform}_{safe_name}_{timestamp}.md"
-        full_path = os.path.join(OUTPUT_DIR, filename)
+        if file_path and os.path.exists(file_path):
+            # 追加到已有文件
+            with open(file_path, "a", encoding="utf-8") as f:
+                f.write(f"\n\n{'='*50}\n")
+                f.write(f"产品：{product_name}\n\n")
+                f.write(content)
+        else:
+            # 新建文件
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename  = f"{platform}_batch_{timestamp}.md"
+            file_path = os.path.join(OUTPUT_DIR, filename)
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(f"===== 存档时间：{datetime.now()} =====\n")
+                f.write(f"平台：{platform}\n\n")
+                f.write(f"{'='*50}\n")
+                f.write(f"产品：{product_name}\n\n")
+                f.write(content)
 
-        with open(full_path, "w", encoding="utf-8") as f:
-            f.write(f"===== 存档时间：{datetime.now()} =====\n")
-            f.write(f"平台：{platform}\n产品：{product_name}\n\n")
-            f.write(content)
-
-        return {"status": "success", "data": {"file_path": full_path}, "message": "文案本地存档完成"}
+        return {"status": "success", "data": {"file_path": file_path}, "message": "文案本地存档完成"}
 
     except Exception as e:
         logger.error(f"write_local_file 异常: {e}", exc_info=True)

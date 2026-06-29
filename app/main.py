@@ -60,7 +60,8 @@ def main():
     db: Session = next(get_db())
     try:
         session_id = "local_test_001"
-        agent      = BeautyAgent(db=db, session_id=session_id)
+        # agent      = BeautyAgent(db=db, session_id=session_id)
+        agent = BeautyAgent(db=db, session_id=session_id, user_id=user_id)
 
         print("✅ Beauty Assistant activated！Enter your question（q to quit）：")
 
