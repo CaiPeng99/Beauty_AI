@@ -2,7 +2,7 @@
 
 An end-to-end AI system that answers beauty product questions and publishes social content to Notion and Twitter, built on a hybrid RAG pipeline with intent routing, cross-encoder reranking, and automated evaluation.
 
-> **Stack:** Python · PostgreSQL + pgvector + TSVECTOR · Sentence Transformers · CrossEncoder · Claude API · MCP SDK · Notion API · Twitter API · Ragas
+> **Stack:** Python · PostgreSQL + pgvector + TSVECTOR · Sentence Transformers · CrossEncoder · Claude API · MCP SDK · Notion API
 
 ---
 
