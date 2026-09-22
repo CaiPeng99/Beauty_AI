@@ -1,6 +1,6 @@
 # Beauty AI — RAG + MCP + AI Agent for Beauty Product Q&A and Content Publishing
 
-An end-to-end AI system that answers beauty product questions and publishes social content to Notion and Twitter, built on a hybrid RAG pipeline with intent routing, cross-encoder reranking, and automated evaluation.
+An end-to-end AI system that answers beauty product questions and publishes social content to Notion, built on a hybrid RAG pipeline with intent routing, cross-encoder reranking, and automated evaluation.
 
 > **Stack:** Python · PostgreSQL + pgvector + TSVECTOR · Sentence Transformers · CrossEncoder · Claude API · MCP SDK · Notion API
 
